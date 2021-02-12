@@ -20,8 +20,8 @@ Temas:
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 17/0122549 |  Paulo Gonçalves Lima |
+| 17/0113060 |  Pedro Vítor de Salles Cella |
 
 ## Sobre 
 Descreva os objetivos do seu projeto e como ele funciona. 
