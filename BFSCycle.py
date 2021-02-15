@@ -21,16 +21,18 @@ class Node:
 
 class Elo:
 	def __init__(self, childNode: Node):
-			self.childNode = childNode
-			self.Visited = 0
+		self.childNode = childNode
+		self.Visited = 0
 
+	def setVisited(self, status: int):
+		self.Visited = status
 
 class Grafo:
 	def __init__(self) -> None:
-			self.Nodes = defaultdict(Node)
+		self.Nodes = defaultdict(Node)
 
 	def addNode(self, node: Node):
-			self.Nodes[node.number] = node
+		self.Nodes.update({node.number: node})
 
 	def addElo(self, currentNode: Node, nextNode: Node): # This is a direcioned Elo, possible fix: make the 2 nodes share the same elo 
 
@@ -52,12 +54,31 @@ class Grafo:
 				self.Nodes[i].printElos()
 	
 	def BFS(self, root: int):
-		pass
+		if root not in self.Nodes:
+			print("Não achado ponto de inicio.")
+			return 0
 
+		if root != list(self.Nodes)[0]:
+			nodeList = {}
+			for i in range(root, len(self.Nodes) + 1):
+				if i in self.Nodes:
+					nodeList.update({i - root + 1: self.Nodes[i]})
+
+			
+			for i in range(0, root):
+				key = list(nodeList)[-1] + 1
+
+				if i in self.Nodes:
+					nodeList.update({key: self.Nodes[i]})
+
+		for i in nodeList:
+			nodeList[i]
 
 
 
 g = Grafo()
+
+g.addElo(Node(0), Node(1))
 
 g.addElo(Node(1), Node(2))
 g.addElo(Node(1), Node(3))
@@ -92,4 +113,6 @@ g.addElo(Node(8), Node(7))
 g.addElo(Node(9), Node(10))
 g.addElo(Node(10), Node(9))
 g.printGraph()
+
+g.BFS(4)
 # g.addElo2Nodes(g.Nodes[0], g.Nodes[1])
