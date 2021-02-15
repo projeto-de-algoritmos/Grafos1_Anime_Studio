@@ -6,3 +6,6 @@ def helloWorld(request):
 
 def home(request):
     return render(request, 'search_anime/home.html')
+
+def projeto(request):
+    return render(request, 'search_anime/projeto.html')

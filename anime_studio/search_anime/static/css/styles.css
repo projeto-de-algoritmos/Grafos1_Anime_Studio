@@ -7,6 +7,7 @@
     text-align: center;   
 }
 
+/* Base */
 /*Navbar*/
 
 .navbar  {
@@ -29,19 +30,82 @@
     
 }
 
-/* Pagina principal */
+/* Home */
 
-div.card {
-    justify-content: center;
-    text-align: center;
-    margin: auto;
-    margin-top: 60px;
-    width: 35rem;
-    border: black 1px solid;
+a.navbar-brand {
+    font-family: 'Bangers', cursive;
+    font-weight: lighter;
+    font-size: 35px;
 }
 
-div.card h5 {
+div#home.card {
+    margin: 0; 
+    width: 500px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+div#home.card p{
+    text-align: justify;
+    padding: 10px;
+}
+
+div#home.card h5 {
     font-weight: bold;
+}
+
+div#aboutus{
+    margin: auto;
+    width: 450px;
+    margin-top: 30px;
+}
+
+div#aboutus h6{
+    text-align: center;
+}
+
+table.table td {
+    text-align: center;
+    padding-top: 10px;
+}
+
+table.table td#imagem {
+    text-align: center;
+}
+
+table.table td#descricao {
+    text-align: left;
+    padding-right: 40px;
+    width: 100px;
+}
+
+div#aboutus img{
+    width: 150px;
+}
+
+tabe#table ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Projeto */
+
+div#studio.card {
+    margin: auto;
+    margin-top: 30px;
+    padding-bottom: 0;
+    width: 1000px;
+}
+
+div#studio.card h6 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+div#studio.card tbody {
+    text-align: center;
 }
 
 /* Footer */
@@ -50,3 +114,5 @@ div.card h5 {
     margin-top: 40px;
     text-align: center;
 }
+
+

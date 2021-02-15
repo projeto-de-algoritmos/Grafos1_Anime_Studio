@@ -3,11 +3,44 @@
 {% block title %}Home da Pagina{% endblock %}
 
 {% block content %}
-<h3>Seja bem-vindo(a) ao nosso projeto</h3>
+<h3>Seja bem-vindo(a) ao nosso projeto</h3>  
 
-<div class="card">
+<div class="card mx-auto" id="home"> 
     <h5>Descrição do Projeto</h5>
-    <p>Nosso projeto bla bla bla</p>
+    <p>Seguimos a dica do professor se fizemos algo relacionado ao que gostamos, por isso nosso projeto consiste em um pesquisador de estúdios de anime, selecionamos alguns estúdios famosos bem como alguns animes feitos pelos mesmos, dessa forma utilizando de um grafo conseguimoes mostrar quai animes são pertencentes a quais estúdios, da mesma forma mostra alguns animes que podem ter sido feitos por mais de um estúdio.</p>
 </div>
 
+<div id="aboutus">
+    <table class="table">
+        <thead>
+            <h6>Participantes</h6>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="imagem">
+                    <img src="https://i.imgur.com/3cCsVtJ.jpg" alt="teste">
+                </td>
+                <td id="descricao">
+                    <ul>
+                        <li>Paulo Gonçalves Lima</li>
+                        <li>17/0122549</li>
+                        <li><a href="https://github.com/PauloGoncalvesLima" target="_blank">PauloGoncalvesLima</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td id="imagem">
+                    <img src="https://i.imgur.com/pmpe3vt.jpg" alt="teste">
+                </td>
+                <td id="descricao">
+                    <ul>
+                        <li>Pedro Vítor de Salles Cella</li>
+                        <li>17/0113060</li>
+                        <li><a href="https://github.com/pedro-cella target="_blank">pedro-cella</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
