@@ -86,6 +86,8 @@ def projeto(request):
     if request.method == 'POST':
         if request.POST.get("bones"):
             print("Bones")
+            g.addElo(BFS.Node("Bones"), BFS.Node("FMA"))
+            g.printGraph()
             template = 'search_anime/bones.html'
         elif request.POST.get("wit"):
             print("Wit Studio")
