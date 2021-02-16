@@ -1,6 +1,6 @@
 from collections import defaultdict
 from typing import DefaultDict
-
+import math
 class Node:
 	def __init__(self, number: int):
 			self.number = number
@@ -35,7 +35,7 @@ class Elo:
 class Grafo:
 	def __init__(self) -> None:
 		self.Nodes = defaultdict(Node)
-
+		self.BFSPass = False
 	def addNode(self, node: Node):
 		self.Nodes.update({node.number: node})
 
@@ -75,29 +75,77 @@ class Grafo:
 
 				if i in self.Nodes:
 					nodeList.update({key: self.Nodes[i]})
-
+		else:
+			nodeList = self.Nodes
 		
 		queque = []
+		Layer = 0
 		for i in nodeList:
-			Layer = 'INF'
+
+			# if Layer:
+			# 	currNode.Layer = math.inf
+
 			queque.append(nodeList[i])
+
 			while queque:
+				# for x in queque:
+				# 	print(f"{x.number}, ", end="")
+				# print("")
 				currNode = queque.pop(0)
-				currNode.Visited = True
+
+				if currNode.number == root:
+					currNode.Layer = 0
+
+				if not currNode.Visited:
+					currNode.Visited = True
 
 				for j in currNode.Elos:
-
-					if currNode.Elos[j].Visited == 0:
+					if currNode.Elos[j].childNode.Visited == 0:
+						# print(f"CurrntNOde: {currNode.number}, CurrntChildNode: {currNode.Elos[j].childNode.number}")
 						currNode.Elos[j].Visited = 1
-						currNode.Elos[j].childNode.Elos[currNode.number].Visited = 1
-
+						if currNode.number in currNode.Elos[j].childNode.Elos:
+							currNode.Elos[j].childNode.Elos[currNode.number].Visited = 1
+					
 						currNode.Elos[j].childNode.Visited = True
-						queque.append(currNode.Elos[j].childNode)
-
 						
-		for i in nodeList:
-			print(f"{nodeList[i].number}: {nodeList[i].Visited}")
+						if currNode.Layer == None:
+							currNode.Layer = math.inf
+							currNode.Elos[j].childNode.Layer = math.inf
+						else:
+							currNode.Elos[j].childNode.Layer = currNode.Layer + 1
+
+						queque.append(currNode.Elos[j].childNode)
+					elif currNode.Elos[j].Visited == 0:
+						currNode.Elos[j].Visited = 2
+						
+
+
+		for x in nodeList:
+			print(f"{nodeList[x].number}: {nodeList[x].Layer}")
+		self.BFSPass = True
+	
+	def printVisited(self):
+		for i in self.Nodes:
+			print(f"{self.Nodes[i].number}: ")
+			for j in self.Nodes[i].Elos:
+				print(f"  {self.Nodes[i].number} - {self.Nodes[i].Elos[j].childNode.number}: {self.Nodes[i].Elos[j].Visited}")
+
 g = Grafo()
+
+
+
+# g.addElo(Node(0), Node(1))
+
+# g.addElo(Node(1), Node(0))
+# g.addElo(Node(1), Node(2))
+
+# g.addElo(Node(2), Node(1))
+# g.addElo(Node(2), Node(3))
+
+# g.addElo(Node(3), Node(0))
+
+# g.addElo(Node(9), Node(8))
+# g.addElo(Node(8), Node(9))
 
 g.addElo(Node(0), Node(1))
 
@@ -134,7 +182,12 @@ g.addElo(Node(8), Node(7))
 
 g.addElo(Node(9), Node(10))
 g.addElo(Node(10), Node(9))
+g.addElo(Node(10), Node(11))
+
+g.addElo(Node(11), Node(10))
 # g.printGraph()
 
-g.BFS(4)
+g.BFS(0)
+
+g.printVisited()
 # g.addElo2Nodes(g.Nodes[0], g.Nodes[1])
