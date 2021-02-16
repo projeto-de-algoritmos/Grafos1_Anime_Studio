@@ -2,26 +2,26 @@ from collections import defaultdict
 from typing import DefaultDict
 import math
 class Node:
-	def __init__(self, number: int):
-			self.number = number
+	def __init__(self, name):
+			self.Name = name
 			self.Layer = None
 			self.Visited = False
 			self.Elos = {}
 	
 	def addElo(self, nextNode):
-		self.Elos.update({nextNode.number: Elo(nextNode)})
+		self.Elos.update({nextNode.Name: Elo(nextNode)})
 
 	def searchInElos(self, nodeNumber):
 		if nodeNumber in self.Elos:
 			return self.Elos.get(nodeNumber)
 
 	def printElos(self):
-		print(f"{self.number}-------->", end="")
+		print(f"{self.Name}-------->", end="")
 		for i in self.Elos:
 			if i == len(self.Elos) - 1:
-				print(f"{self.Elos[i].childNode.number}")
+				print(f"{self.Elos[i].childNode.Name}")
 			else:
-				print(f"{self.Elos[i].childNode.number}-------->", end="")
+				print(f"{self.Elos[i].childNode.Name}-------->", end="")
 		print("")
 
 class Elo:
@@ -37,22 +37,22 @@ class Grafo:
 		self.Nodes = defaultdict(Node)
 		self.BFSPass = False
 	def addNode(self, node: Node):
-		self.Nodes.update({node.number: node})
+		self.Nodes.update({node.Name: node})
 
 	def addElo(self, currentNode: Node, nextNode: Node): # This is a direcioned Elo, possible fix: make the 2 nodes share the same elo 
 
-		if currentNode.number in self.Nodes:
-			currentNode = self.Nodes.get(currentNode.number)
+		if currentNode.Name in self.Nodes:
+			currentNode = self.Nodes.get(currentNode.Name)
 		else:
 			self.addNode(currentNode)
 
-		if nextNode.number in self.Nodes:
-			nextNode = self.Nodes.get(nextNode.number)
+		if nextNode.Name in self.Nodes:
+			nextNode = self.Nodes.get(nextNode.Name)
 		else:
 			self.addNode(nextNode)
 		
-		self.Nodes[currentNode.number].addElo(nextNode)
-		# self.Nodes[nextNode.number].addElo(currentNode)
+		self.Nodes[currentNode.Name].addElo(nextNode)
+		# self.Nodes[nextNode.Name].addElo(currentNode)
 	def printGraph(self):
 		for i in self.Nodes:
 			if self.Nodes[i].Elos:
@@ -65,19 +65,33 @@ class Grafo:
 
 		if root != list(self.Nodes)[0]:
 			nodeList = {}
-			for i in range(root, len(self.Nodes) + 1):
-				if i in self.Nodes:
-					nodeList.update({i - root + 1: self.Nodes[i]})
+			print(self.Nodes)
+			if type(root) not in [int, float]:
+				Nroot = list(self.Nodes.keys()).index(root)
+				# print(root)
+			else:
+				Nroot = root
+
+			for i in range(Nroot, len(self.Nodes)):
+				print(i)
+				currnt = list(self.Nodes.keys())[i]
+				print(currnt)
+				if currnt in self.Nodes:
+					print("Olas")
+
+					nodeList.update({currnt: self.Nodes[currnt]})
 
 			
-			for i in range(0, root):
-				key = list(nodeList)[-1] + 1
-
-				if i in self.Nodes:
-					nodeList.update({key: self.Nodes[i]})
+			for i in range(0, Nroot):
+				currnt = list(self.Nodes.keys())[i]
+				print(currnt)
+				if currnt in self.Nodes:
+					nodeList.update({currnt: self.Nodes[currnt]})
 		else:
 			nodeList = self.Nodes
 		
+		print(nodeList)
+
 		queque = []
 		Layer = 0
 		for i in nodeList:
@@ -89,11 +103,11 @@ class Grafo:
 
 			while queque:
 				# for x in queque:
-				# 	print(f"{x.number}, ", end="")
+				# 	print(f"{x.Name}, ", end="")
 				# print("")
 				currNode = queque.pop(0)
 
-				if currNode.number == root:
+				if currNode.Name == root:
 					currNode.Layer = 0
 
 				if not currNode.Visited:
@@ -101,10 +115,10 @@ class Grafo:
 
 				for j in currNode.Elos:
 					if currNode.Elos[j].childNode.Visited == 0:
-						# print(f"CurrntNOde: {currNode.number}, CurrntChildNode: {currNode.Elos[j].childNode.number}")
+						# print(f"CurrntNOde: {currNode.Name}, CurrntChildNode: {currNode.Elos[j].childNode.Name}")
 						currNode.Elos[j].Visited = 1
-						if currNode.number in currNode.Elos[j].childNode.Elos:
-							currNode.Elos[j].childNode.Elos[currNode.number].Visited = 1
+						if currNode.Name in currNode.Elos[j].childNode.Elos:
+							currNode.Elos[j].childNode.Elos[currNode.Name].Visited = 1
 					
 						currNode.Elos[j].childNode.Visited = True
 						
@@ -121,14 +135,14 @@ class Grafo:
 
 
 		for x in nodeList:
-			print(f"{nodeList[x].number}: {nodeList[x].Layer}")
+			print(f"{nodeList[x].Name}: {nodeList[x].Layer}")
 		self.BFSPass = True
 	
 	def printVisited(self):
 		for i in self.Nodes:
-			print(f"{self.Nodes[i].number}: ")
+			print(f"{self.Nodes[i].Name}: ")
 			for j in self.Nodes[i].Elos:
-				print(f"  {self.Nodes[i].number} - {self.Nodes[i].Elos[j].childNode.number}: {self.Nodes[i].Elos[j].Visited}")
+				print(f"  {self.Nodes[i].Name} - {self.Nodes[i].Elos[j].childNode.Name}: {self.Nodes[i].Elos[j].Visited}")
 
 g = Grafo()
 
@@ -187,7 +201,13 @@ g.addElo(Node(10), Node(11))
 g.addElo(Node(11), Node(10))
 # g.printGraph()
 
-g.BFS(0)
+
+# g.addElo(Node("Atk"), Node("MAPPA"))
+# g.addElo(Node("MAPPA"), Node("Atk"))
+
+g.BFS(5)
+
+# print(g.Nodes["MAPPA"].Layer)
 
 g.printVisited()
 # g.addElo2Nodes(g.Nodes[0], g.Nodes[1])
