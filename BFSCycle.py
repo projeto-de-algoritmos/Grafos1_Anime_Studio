@@ -4,11 +4,16 @@ from typing import DefaultDict
 class Node:
 	def __init__(self, number: int):
 			self.number = number
-			self.Visited = True
+			self.Layer = None
+			self.Visited = False
 			self.Elos = {}
 	
 	def addElo(self, nextNode):
-		self.Elos[len(self.Elos)] = (Elo(nextNode))
+		self.Elos.update({nextNode.number: Elo(nextNode)})
+
+	def searchInElos(self, nodeNumber):
+		if nodeNumber in self.Elos:
+			return self.Elos.get(nodeNumber)
 
 	def printElos(self):
 		print(f"{self.number}-------->", end="")
@@ -71,15 +76,32 @@ class Grafo:
 				if i in self.Nodes:
 					nodeList.update({key: self.Nodes[i]})
 
+		
+		queque = []
 		for i in nodeList:
-			nodeList[i]
+			Layer = 'INF'
+			queque.append(nodeList[i])
+			while queque:
+				currNode = queque.pop(0)
+				currNode.Visited = True
 
+				for j in currNode.Elos:
 
+					if currNode.Elos[j].Visited == 0:
+						currNode.Elos[j].Visited = 1
+						currNode.Elos[j].childNode.Elos[currNode.number].Visited = 1
 
+						currNode.Elos[j].childNode.Visited = True
+						queque.append(currNode.Elos[j].childNode)
+
+						
+		for i in nodeList:
+			print(f"{nodeList[i].number}: {nodeList[i].Visited}")
 g = Grafo()
 
 g.addElo(Node(0), Node(1))
 
+g.addElo(Node(1), Node(0))
 g.addElo(Node(1), Node(2))
 g.addElo(Node(1), Node(3))
 
@@ -112,7 +134,7 @@ g.addElo(Node(8), Node(7))
 
 g.addElo(Node(9), Node(10))
 g.addElo(Node(10), Node(9))
-g.printGraph()
+# g.printGraph()
 
 g.BFS(4)
 # g.addElo2Nodes(g.Nodes[0], g.Nodes[1])
