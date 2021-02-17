@@ -1,0 +1,32 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('helloworld/', views.helloWorld),
+    path('', views.home, name='home'),
+    path('projeto/', views.projeto, name='projeto'),
+    path('bones/', views.bones, name='bones'),
+    path('wit/', views.wit, name='wit'),
+    path('mappa/', views.mappa, name='mappa'),
+    path('madhouse/', views.madhouse, name='madhouse'),
+    path('apic/', views.apic, name='apic'),
+    path('ufotable/', views.ufotable, name='ufotable'),
+    path('jcstaff/', views.jcstaff, name='jcstaff'),
+    path('paworks/', views.paworks, name='paworks'),
+    path('trigger/', views.trigger, name='trigger'),
+    path('kyoto/', views.kyoto, name='kyoto'),
+    path('pierrot/', views.pierrot, name='pierrot'),
+    path('whitefox/', views.whitefox, name='whitefox'),
+    path('clover/', views.clover, name='clover'),
+    path('toei/', views.toei, name='toei'),
+    path('artland/', views.artland, name='artland'),
+    path('kinema/', views.kinema, name='kinema'),
+    path('david/', views.david, name='david'),
+    path('voln/', views.voln, name='voln'),
+    path('ig/', views.ig, name='ig'),
+    path('gainax/', views.gainax, name='gainax'),
+    path('tms/', views.tms, name='tms'),
+    path('feel/', views.feel, name='feel'),
+    path('deen/', views.deen, name='deen'),
+    path('sunrise/', views.sunrise, name='sunrise'),
+]

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Home da Pagina{% endblock %}
+
+{% block content %}
+<h3>Projeto</h3>
+
+<div class="card mx-auto" id="projeto"> 
+  <h5>Como Usar</h5>
+  <p>Para usar é simples, basta clicar no nome do estúdio e os grafos fazem o trabalho!</p>
+</div>
+
+<div class="card" id="studio">
+  <form action="{% url 'projeto' %}" method="post"> {% csrf_token %}
+    <table class="table">
+      <thead>
+        <h6>Estúdios</h6>
+      </thead>
+      <tbody>
+        <tr>
+          <td><button type="submit" name="bones" value="Bones">Bones</button></td>
+          <td><button type="submit" name="wit" value="Wit Studio">Wit Studio</button></td>
+          <td><button type="submit" name="mappa" value="Mappa">Mappa</button></td>
+          <td><button type="submit" name="madhouse" value="Mad House">Mad House</button></td>
+          <td><button type="submit" name="a1" value="A-1 Pictures">A-1 Pictures</button></td>
+          <td><button type="submit" name="ufotable" value="Ufotable">Ufotable</button></td>
+        </tr>
+        <tr>
+          <td><button type="submit" name="jcstaff" value="J.C Staff">J.C Staff</button></td>
+          <td><button type="submit" name="paworks" value="P.A Works">P.A Works</button></td>
+          <td><button type="submit" name="trigger" value="Trigger">Trigger</button></td>
+          <td><button type="submit" name="kyoto" value="Kyoto Animation">Kyoto Animation</button></td>
+          <td><button type="submit" name="pierrot" value="Studio Pierrot">Studio Pierrot</button></td>
+          <td><button type="submit" name="fox" value="White Fox">White Fox</button></td>
+        </tr>
+        <tr>
+          <td><button type="submit" name="clover" value="Clover Works">Clover Works</button></td>
+          <td><button type="submit" name="toei" value="Toei Animation">Toei Animation</button></td>
+          <td><button type="submit" name="artland" value="Artland">Artland</button></td>
+          <td><button type="submit" name="kinema" value="Kinema Citrus">Kinema Citrus</button></td>
+          <td><button type="submit" name="david" value="David Production">David Production</button></td>
+          <td><button type="submit" name="voln" value="Studio VOLN">Studio VOLN</button></td>
+        </tr>
+        <tr>
+          <td><button type="submit" name="ig" value="Production I.G">Production I.G</button></td>
+          <td><button type="submit" name="gainex" value="Gainax">Gainax</button></td>
+          <td><button type="submit" name="tms" value="TMS Entertainment">TMS Entertainment</button></td>
+          <td><button type="submit" name="feel" value="feel">feel</button></td>
+          <td><button type="submit" name="deen" value="Studio Deen">Studio Deen</button></td>
+          <td><button type="submit" name="sunrise" value="Sunrise">Sunrise</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+{% endblock %}
