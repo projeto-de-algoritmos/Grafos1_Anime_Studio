@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from search_anime.util import BFS
-from igraph import *
 
 def helloWorld(request):
     return HttpResponse('Hello World')
@@ -83,7 +82,6 @@ def sunrise(request):
 
 def projeto(request):
     g = BFS.Grafo()
-    x = Graph()
     template = 'search_anime/projeto.html'
     context = {}
     if request.method == 'POST':
@@ -94,26 +92,19 @@ def projeto(request):
             g.addElo(BFS.Node("Bones"), BFS.Node("Mob Psycho 100"))
             g.addElo(BFS.Node("Bones"), BFS.Node("Soul Eater"))
             g.addElo(BFS.Node("Bones"), BFS.Node("Bungou Stray Dogs"))
-            g.addElo(BFS.Node("Bones"), BFS.Node("Darker than Black: Kuro no Keiyakusha"))
+            g.addElo(BFS.Node("Bones"), BFS.Node("Darker than Black"))
             g.addElo(BFS.Node("Bones"), BFS.Node("Kekkai Sensen"))
             g.addElo(BFS.Node("Bones"), BFS.Node("Carole & Tuesday"))
 
-            # x.add_vertex("Bones")
-            # x.add_vertex("Fullmetal Alchemist: Brotherhood")
-            # x.add_vertex("Boku no Hero Academia")
-            # x.add_vertex("Noragami")
-            # x.add_vertex("Mob Psycho 100")
+            g.BFS("Bones")
+            g.plotGraph()
+            # g.printLayers()
 
-            # x.add_edges([("Bones","Fullmetal Alchemist: Brotherhood"), ("Bones", "Boku no Hero Academia"), ("Bones", "Noragami")])
-
-            
-            
-            # plot(x, 'graph.png', vertex_label=["Bones", "Fullmetal Alchemist: Brotherhood", "Boku no Hero Academia", "Noragami"], vertex_color="white")
-            
             context =  {
                 'nosso_grafo': g.printGraph(),
-                # 'biblioteca_grafo': plot(x)
+                # 'distancia_grafo': g.printLayers(),
             }
+
 
             template = 'search_anime/bones.html'
 
@@ -125,6 +116,9 @@ def projeto(request):
             g.addElo(BFS.Node("Wit Studio"), BFS.Node("Mahoutsukai no Yome"))
             g.addElo(BFS.Node("Wit Studio"), BFS.Node("Great Pretender"))
             g.addElo(BFS.Node("Wit Studio"), BFS.Node("Koi wa Ameagari no You ni"))
+
+            g.BFS("Wit Studio")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -142,6 +136,9 @@ def projeto(request):
             g.addElo(BFS.Node("Mappa"), BFS.Node("Inuyashiki"))
             g.addElo(BFS.Node("Mappa"), BFS.Node("Dorohedoro"))
             g.addElo(BFS.Node("Mappa"), BFS.Node("Ushio to Tora"))
+
+            g.BFS("Mappa")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -166,6 +163,9 @@ def projeto(request):
             g.addElo(BFS.Node("Mad House"), BFS.Node("Ore Monogatari!!"))
             g.addElo(BFS.Node("Mad House"), BFS.Node("Hajime no Ippo"))
             g.addElo(BFS.Node("Mad House"), BFS.Node("Paprika"))
+
+            g.BFS("Mad House")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -196,6 +196,9 @@ def projeto(request):
             g.addElo(BFS.Node("A-1 Pictures"), BFS.Node("Demi-chan wa Kataritai"))
             g.addElo(BFS.Node("A-1 Pictures"), BFS.Node("Grancrest Senki"))
             
+            g.BFS("A-1 Pictures")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -206,39 +209,48 @@ def projeto(request):
             g.addElo(BFS.Node("Ufotable"), BFS.Node("Fate/Zero"))
             g.addElo(BFS.Node("Ufotable"), BFS.Node("God Eater"))
 
+            g.BFS("Ufotable")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
             template = 'search_anime/ufotable.html'
 
         elif request.POST.get("jcstaff"):
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Toradora!"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Shokugeki no Souma"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Sakura-sou no Pet na Kanojo"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Kaichou wa Maid-sama!"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Prison School"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Golden Time"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Zero no Tsukaima"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Toaru Majutsu no Index"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Saiki Kusuo no Ψ-nan"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Bakuman"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("High Score Girl"))
-            g.addElo(BFS.Node("J.C Staff"), BFS.Node("Back Street Girls: Gokudolls"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Toradora!"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Shokugeki no Souma"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Sakura-sou no Pet na Kanojo"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Kaichou wa Maid-sama!"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Prison School"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Golden Time"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Zero no Tsukaima"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Toaru Majutsu no Index"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Saiki Kusuo no Ψ-nan"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Bakuman"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("High Score Girl"))
+            g.addElo(BFS.Node("JC Staff"), BFS.Node("Back Street Girls: Gokudolls"))
             
+            g.BFS("JC Staff")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
             template = 'search_anime/jcstaff.html'
 
         elif request.POST.get("paworks"):
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Angel Beats!"))
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Another"))
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Charlotte"))
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Nagi no Asu kara"))
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Hanasaku Iroha"))
-            g.addElo(BFS.Node("P.A Works"), BFS.Node("Kamisama ni Natta Hi"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Angel Beats!"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Another"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Charlotte"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Nagi no Asu kara"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Hanasaku Iroha"))
+            g.addElo(BFS.Node("PA Works"), BFS.Node("Kamisama ni Natta Hi"))
             
+            g.BFS("PA Works")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -251,6 +263,9 @@ def projeto(request):
             g.addElo(BFS.Node("Trigger"), BFS.Node("Little Witch Academia"))
             g.addElo(BFS.Node("Trigger"), BFS.Node("SSSS.Gridman"))
             g.addElo(BFS.Node("Trigger"), BFS.Node("BNA: Brand New Animal"))
+
+            g.BFS("Trigger")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -269,6 +284,9 @@ def projeto(request):
             g.addElo(BFS.Node("Kyoto Animation"), BFS.Node("Nichijou"))
             g.addElo(BFS.Node("Kyoto Animation"), BFS.Node("Amagi Brilliant Park"))
 
+            g.BFS("Kyoto Animation")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -284,6 +302,9 @@ def projeto(request):
             g.addElo(BFS.Node("Studio Pierrot"), BFS.Node("Akudama Drive"))
             g.addElo(BFS.Node("Studio Pierrot"), BFS.Node("Great Teacher Onizuka"))
 
+            g.BFS("Studio Pierrot")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -298,6 +319,9 @@ def projeto(request):
             g.addElo(BFS.Node("White Fox"), BFS.Node("Shinchou Yuusha: Kono Yuusha ga Ore Tueee Kuse ni Shinchou Sugiru"))
             g.addElo(BFS.Node("White Fox"), BFS.Node("Arifureta Shokugyou de Sekai Saikyou"))
             
+            g.BFS("White Fox")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -311,6 +335,9 @@ def projeto(request):
             g.addElo(BFS.Node("Clover Works"), BFS.Node("Wonder Egg Priority"))
             g.addElo(BFS.Node("Clover Works"), BFS.Node("Persona 5 the Animation"))
             
+            g.BFS("Clover Works")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -322,6 +349,9 @@ def projeto(request):
             g.addElo(BFS.Node("Toei Animation"), BFS.Node("Digimon"))
             g.addElo(BFS.Node("Toei Animation"), BFS.Node("Yu☆Gi☆Oh!"))
             
+            g.BFS("Toei Animation")
+            g.plotGraph()
+            
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -329,6 +359,9 @@ def projeto(request):
 
         elif request.POST.get("artland"):
             g.addElo(BFS.Node("Artland"), BFS.Node("Mushishi"))
+
+            g.BFS("Artland")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -340,6 +373,9 @@ def projeto(request):
             g.addElo(BFS.Node("Kinema Citrus"), BFS.Node("Made in Abyss"))
             g.addElo(BFS.Node("Kinema Citrus"), BFS.Node("Black Bullet"))
             g.addElo(BFS.Node("Kinema Citrus"), BFS.Node("Barakamon"))
+
+            g.BFS("Kinema Citrus")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -353,6 +389,9 @@ def projeto(request):
             g.addElo(BFS.Node("David Production"), BFS.Node("Enen no Shouboutai"))
             g.addElo(BFS.Node("David Production"), BFS.Node("Hataraku Saibou"))
 
+            g.BFS("David Production")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -362,17 +401,23 @@ def projeto(request):
             g.addElo(BFS.Node("Studio VOLN"), BFS.Node("Ushio to Tora"))
             g.addElo(BFS.Node("Studio VOLN"), BFS.Node("Karakuri Circus"))
 
+            g.BFS("Studio Deen")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
             template = 'search_anime/voln.html'
 
         elif request.POST.get("ig"):
-            g.addElo(BFS.Node("Production I.G"), BFS.Node("Psycho-Pass"))
-            g.addElo(BFS.Node("Production I.G"), BFS.Node("Haikyuu!!"))
-            g.addElo(BFS.Node("Production I.G"), BFS.Node("Kuroko no Basket"))
-            g.addElo(BFS.Node("Production I.G"), BFS.Node("Guilty Crown"))
-            g.addElo(BFS.Node("Production I.G"), BFS.Node("Yuukoku no Moriarty"))
+            g.addElo(BFS.Node("Production IG"), BFS.Node("Psycho-Pass"))
+            g.addElo(BFS.Node("Production IG"), BFS.Node("Haikyuu!!"))
+            g.addElo(BFS.Node("Production IG"), BFS.Node("Kuroko no Basket"))
+            g.addElo(BFS.Node("Production IG"), BFS.Node("Guilty Crown"))
+            g.addElo(BFS.Node("Production IG"), BFS.Node("Yuukoku no Moriarty"))
+
+            g.BFS("Production IG")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -382,6 +427,9 @@ def projeto(request):
         elif request.POST.get("gainex"):
             g.addElo(BFS.Node("Gainex"), BFS.Node("Tengen Toppa Gurren Lagann"))
             g.addElo(BFS.Node("Gainex"), BFS.Node("Neon Genesis Evangelion"))
+
+            g.BFS("Gainex")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -400,6 +448,9 @@ def projeto(request):
             g.addElo(BFS.Node("TMS Entertainment"), BFS.Node("Bakugan"))
             g.addElo(BFS.Node("TMS Entertainment"), BFS.Node("Tottoko Hamtarou"))
 
+            g.BFS("TMS Entertainment")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -413,6 +464,9 @@ def projeto(request):
             g.addElo(BFS.Node("feel"), BFS.Node("Island"))
             g.addElo(BFS.Node("feel"), BFS.Node("Ushinawareta Mirai wo Motomete"))
 
+            g.BFS("feel")
+            g.plotGraph()
+
             context =  {
                 'nosso_grafo': g.printGraph(),
             }
@@ -422,6 +476,9 @@ def projeto(request):
             g.addElo(BFS.Node("Studio Deen"), BFS.Node("Kono Subarashii Sekai ni Shukufuku wo!"))
             g.addElo(BFS.Node("Studio Deen"), BFS.Node("Sakamoto Desu ga?"))
             g.addElo(BFS.Node("Studio Deen"), BFS.Node("Higurashi no Naku Koro ni"))
+
+            g.BFS("Studio Deen")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),
@@ -435,6 +492,9 @@ def projeto(request):
             g.addElo(BFS.Node("Sunrise"), BFS.Node("Accel World"))
             g.addElo(BFS.Node("Sunrise"), BFS.Node("Danshi Koukousei no Nichijou"))
             g.addElo(BFS.Node("Sunrise"), BFS.Node("Cross Ange: Tenshi to Ryuu no Rondo"))
+
+            g.BFS("Sunrise")
+            g.plotGraph()
 
             context =  {
                 'nosso_grafo': g.printGraph(),

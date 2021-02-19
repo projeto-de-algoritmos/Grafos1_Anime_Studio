@@ -137,6 +137,44 @@ div#projeto.card h5 {
     font-weight: bold;
 }
 
+/* Páginas dos estúdios */
+div#estudio {
+    margin: auto;
+    margin-top: 30px;
+    padding-bottom: 0;
+    width: 1000px;
+    justify-content: center;
+}
+
+h4#card-topic {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold; 
+    margin-top: 20px;
+}
+
+div#logo img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+
+}
+
+div#imagem img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+div#imagem h4{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;    
+}
 
 /* Footer */
 
