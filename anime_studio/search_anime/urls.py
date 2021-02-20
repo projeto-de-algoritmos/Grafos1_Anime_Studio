@@ -29,4 +29,5 @@ urlpatterns = [
     path('feel/', views.feel, name='feel'),
     path('deen/', views.deen, name='deen'),
     path('sunrise/', views.sunrise, name='sunrise'),
+    path('geral/', views.geral, name='geral'),
 ]

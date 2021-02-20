@@ -173,6 +173,25 @@ div#imagem h4{
     margin-top: 20px;
     text-align: center;
     font-size: 30px;
+    font-weight: bold;
+}
+
+div#distancia table{
+    margin: auto;  
+    text-align: center;
+    padding: 10px;
+    width: 450px;
+    border: 1px solid;
+}
+
+div#distancia th {
+    border: 1px solid;
+}
+
+div#distancia h4{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
     font-weight: bold;    
 }
 
