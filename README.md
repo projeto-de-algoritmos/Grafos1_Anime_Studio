@@ -15,7 +15,7 @@ O objetivo do trabalho é mostrar as obras feitos por alguns estúdios na área 
 ## Screenshots
 ![Foto1](https://i.imgur.com/bidgLRQ.png)
 ![Foto2](https://i.imgur.com/3FnNDtu.png)
-![Foto3](https://i.imgur.com/asNZs0X.png)
+![Foto3](https://i.imgur.com/ZZ5adBX.png)
 
 
 ## Instalação 
