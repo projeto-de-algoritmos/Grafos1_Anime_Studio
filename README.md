@@ -10,18 +10,52 @@
 | 17/0113060 |  Pedro Vítor de Salles Cella |
 
 ## Sobre 
-O objetivo do trabalho mostrar quais animes pertencem a determinado estúdio, utilizando de grafos.
+O objetivo do trabalho é mostrar as obras feitos por alguns estúdios na área de animação, sua utilidade é apenas mostrar os diversos estúdios e animes aos curiosos da área utilizando de grafos.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![Foto1](https://i.imgur.com/bidgLRQ.png)
+![Foto2](https://i.imgur.com/3FnNDtu.png)
+![Foto3](https://i.imgur.com/asNZs0X.png)
+
 
 ## Instalação 
 **Linguagem**: Python<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Framework**: Django<br>
+
+Para que você possa rodar o trabalho basta fazer as seguintes instalações<br>
+
+**OBS:** Não foi utilizado máquina virtual no projeto, por isso será mostrado algumas outras formas de se instalar os programas necessários
+
+<br>
+
+### Django
+#### Utilizando do pip:
+`pip install django`
+
+#### Utilizando do apt-get:
+`sudo apt-get install python3-django`
+
+### Bibliotecas
+
+#### maplotlib
+
+##### Utilizando do pip:
+`pip install matplotlib`
+
+##### Utilizando do apt-get:
+`sudo apt-get install python3-matplotlib`
+
+#### networkx
+
+##### Utilizando do pip:
+`pip install networkx`
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+Para rodar nosso projeto basta entrar na pasta `anime_studio` e rodar rodar o comando `python3 manage.py runserver`<br> o programa estará disponível no `localhost:8000`
+
+<br>
+
+Caso apareça o erro **Port already in use** apenas `sudo fuser -k 8000/tcp`
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
