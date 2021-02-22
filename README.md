@@ -51,11 +51,11 @@ Para que você possa rodar o trabalho basta fazer as seguintes instalações<br>
 `pip install networkx`
 
 ## Uso 
-Para rodar nosso projeto basta entrar na pasta `anime_studio` e rodar rodar o comando `python3 manage.py runserver`<br> o programa estará disponível no `localhost:8000`, não acesse o endereço dado pelo Django, o `http://127.0.0.1:8000/` , pois nele as imagens não estão 
+Para rodar nosso projeto basta entrar na pasta `anime_studio` e rodar o comando `python3 manage.py runserver`<br> o programa estará disponível no `localhost:8000`, não acesse o endereço dado pelo Django, o `http://127.0.0.1:8000/` , pois nele as imagens não carregam da forma que deveriam.
 
 <br>
-
-Caso apareça o erro **Port already in use** apenas `sudo fuser -k 8000/tcp`
+ 
+Caso apareça o erro **Port already in use** apenas digite no terminal `sudo fuser -k 8000/tcp` e depois tente novamente usar `python3 manage.py runserver`
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
